@@ -37,3 +37,44 @@
     </main>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiel Bewerken</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Profiel Bewerken</h1>
+        <nav>
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('logout') }}">Uitloggen</a>
+        </nav>
+    </header>
+
+    <main>
+        <form method="POST" enctype="multipart/form-data">
+            <label>Naam:</label>
+            <input type="text" name="name" value="{{ user.name or '' }}" required>
+
+            <label>Adres:</label>
+            <input type="text" name="address" value="{{ user.address or '' }}">
+
+            <label>LinkedIn:</label>
+            <input type="url" name="linkedin" value="{{ user.linkedin or '' }}">
+
+            <label>CV Uploaden:</label>
+            <input type="file" name="cv">
+            {% if user.cv_filename %}
+                <p>Huidig CV: <a href="{{ url_for('static', filename='uploads/' + user.cv_filename) }}" target="_blank">{{ user.cv_filename }}</a></p>
+            {% endif %}
+
+            <button type="submit">Opslaan</button>
+        </form>
+    </main>
+</body>
+</html>
+>>>>>>> 84265b7fd71480856efe1e1aeb4d3a95d3d86c55

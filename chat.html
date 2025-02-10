@@ -46,3 +46,53 @@
     </script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Live Chat</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('logout') }}">Uitloggen</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="chatbox">
+            {% for msg in messages %}
+                <p><strong>{{ msg.sender }}:</strong> {{ msg.message }}</p>
+            {% endfor %}
+        </div>
+
+        <input type="text" id="message" placeholder="Typ je bericht..." autocomplete="off">
+        <button onclick="sendMessage()">Verstuur</button>
+    </main>
+
+    <script>
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        
+        socket.on('message', function(msg) {
+            var chatbox = document.getElementById("chatbox");
+            var p = document.createElement("p");
+            p.innerHTML = msg;
+            chatbox.appendChild(p);
+        });
+
+        function sendMessage() {
+            var messageInput = document.getElementById("message");
+            var message = messageInput.value;
+            socket.send(message);
+            messageInput.value = "";
+        }
+    </script>
+</body>
+</html>
+>>>>>>> 84265b7fd71480856efe1e1aeb4d3a95d3d86c55

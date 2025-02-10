@@ -27,3 +27,34 @@
     </main>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solliciteren - {{ vacature.titel }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Solliciteren voor: {{ vacature.titel }}</h1>
+    </header>
+
+    <main>
+        <form method="POST">
+            <label>Naam:</label>
+            <input type="text" name="naam" required>
+
+            <label>E-mail:</label>
+            <input type="email" name="email" required>
+
+            <label>Motivatie:</label>
+            <textarea name="motivatie" required></textarea>
+
+            <button type="submit">Verstuur</button>
+        </form>
+    </main>
+</body>
+</html>
+>>>>>>> 84265b7fd71480856efe1e1aeb4d3a95d3d86c55
