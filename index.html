@@ -1,43 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uitzendbureau</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <header>
         <h1>Welkom bij Uitzendbureau</h1>
         <nav>
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('vacatures') }}">Vacatures</a>
-            {% if current_user.is_authenticated %}
-                <a href="{{ url_for('dashboard') }}">Dashboard</a>
-                <a href="{{ url_for('chat') }}">Chat</a>
-                <a href="{{ url_for('logout') }}">Uitloggen</a>
-            {% else %}
-                <a href="{{ url_for('register') }}">Registreren</a>
-                <a href="{{ url_for('login') }}">Inloggen</a>
-            {% endif %}
+            <a href="/">Home</a>
+            <a href="/vacatures">Vacatures</a>
+            
+                <a href="/register">Registreren</a>
+                <a href="/login">Inloggen</a>
+            
         </nav>
     </header>
 
     <main>
         <h2>Beschikbare Vacatures</h2>
-        <form method="GET" action="{{ url_for('vacatures') }}">
+        <form method="GET" action="/vacatures">
             <input type="text" name="q" placeholder="Zoek vacatures..." />
             <button type="submit">Zoeken</button>
         </form>
         <div class="vacature-grid">
-            {% for vacature in vacatures %}
+            
                 <div class="vacature-card">
-                    <h3>{{ vacature.titel }}</h3>
-                    <p>{{ vacature.beschrijving[:100] }}...</p>
-                    <a href="{{ url_for('solliciteren', id=vacature.id) }}" class="solliciteer-knop">Solliciteer nu</a>
+                    <h3>Verpleegkundige</h3>
+                    <p>Wij zoeken een verpleegkundige voor een ziekenhuis in Amsterdam....</p>
+                    <a href="/solliciteren/1" class="solliciteer-knop">Solliciteer nu</a>
 
                 </div>
-            {% endfor %}
+            
+                <div class="vacature-card">
+                    <h3>Doktersassistent</h3>
+                    <p>Assisteer huisartsen en specialisten in een drukke praktijk....</p>
+                    <a href="/solliciteren/2" class="solliciteer-knop">Solliciteer nu</a>
+
+                </div>
+            
         </div>
     </main>
 
