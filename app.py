@@ -8,14 +8,14 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-# Database-configuratie aanpassen voor Render
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///database.db")  # Haal database-url van Render op
-if DATABASE_URL.startswith("postgres://"):  # Render gebruikt een oude PostgreSQL-URL-indeling
+# ✅ Database-configuratie voor zowel lokale als online hosting
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///database.db")  
+if DATABASE_URL.startswith("postgres://"):  # Render gebruikt soms een oude PostgreSQL-indeling
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'supersecretkey'
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY", "supersecretkey")
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 db = SQLAlchemy(app)
@@ -25,7 +25,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
 
-# Database Models
+# ✅ Database Models
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
@@ -45,7 +45,7 @@ class ChatMessage(db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# Routes
+# ✅ Routes
 @app.route('/')
 def index():
     vacatures = Vacature.query.all()
@@ -131,7 +131,7 @@ def logout():
     flash("Succesvol uitgelogd!", "info")
     return redirect(url_for('index'))
 
-# Database aanmaken
+# ✅ Database aanmaken als deze nog niet bestaat
 with app.app_context():
     db.create_all()
 
