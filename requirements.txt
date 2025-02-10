@@ -4,12 +4,4 @@ Flask-Bcrypt
 Flask-Login
 Flask-SocketIO
 gunicorn
-=======
-Flask
-Flask-SQLAlchemy
-Flask-Bcrypt
-Flask-Login
-Flask-SocketIO
-gunicorn
->>>>>>> 84265b7fd71480856efe1e1aeb4d3a95d3d86c55
 gevent
