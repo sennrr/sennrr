@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ vacature.titel }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ vacature.titel }}</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('vacatures') }}">Vacatures</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Vacaturedetails</h2>
+        <p><strong>Beschrijving:</strong> {{ vacature.beschrijving }}</p>
+        <p><strong>Werkuren:</strong> {{ vacature.werkuren or 'Niet opgegeven' }}</p>
+        <p><strong>Salaris:</strong> {{ vacature.salaris or 'Onderhandelbaar' }}</p>
+        <p><strong>Locatie:</strong> {{ vacature.locatie or 'Niet opgegeven' }}</p>
+
+        <h3>Vereisten</h3>
+        <p>{{ vacature.vereisten or 'Geen specifieke vereisten vermeld.' }}</p>
+
+        <h3>Verantwoordelijkheden</h3>
+        <p>{{ vacature.verantwoordelijkheden or 'Niet opgegeven' }}</p>
+
+        <a href="{{ url_for('solliciteren', id=vacature.id) }}" class="solliciteer-knop">Solliciteer nu</a>
+    </main>
+</body>
+</html>
