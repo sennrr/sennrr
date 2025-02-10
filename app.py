@@ -7,7 +7,13 @@ from flask_socketio import SocketIO, send
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+
+# Database-configuratie aanpassen voor Render
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///database.db")  # Haal database-url van Render op
+if DATABASE_URL.startswith("postgres://"):  # Render gebruikt een oude PostgreSQL-URL-indeling
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://")
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
