@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uitzendbureau</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -36,7 +35,6 @@
                     <h3>{{ vacature.titel }}</h3>
                     <p>{{ vacature.beschrijving[:100] }}...</p>
                     <a href="{{ url_for('solliciteren', id=vacature.id) }}" class="solliciteer-knop">Solliciteer nu</a>
-
                 </div>
             {% endfor %}
         </div>
