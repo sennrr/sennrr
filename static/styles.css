@@ -1,3 +1,4 @@
+/* Algemene body stijl */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -12,6 +13,7 @@ body {
     to { opacity: 1; }
 }
 
+/* Header stijl */
 header {
     background-color: #4CAF50;
     color: white;
@@ -21,6 +23,7 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Navigatie stijl */
 nav {
     display: flex;
     justify-content: center;
@@ -52,11 +55,13 @@ nav a:active {
     transform: scale(0.95);
 }
 
+/* Hoofdcontent (main) */
 main {
     margin: 20px;
     padding-bottom: 60px;
 }
 
+/* Vacature grid layout */
 .vacature-grid {
     display: flex;
     flex-wrap: wrap;
@@ -95,6 +100,7 @@ main {
     transform: scale(1.05);
 }
 
+/* Footer stijl */
 footer {
     background-color: #4CAF50;
     color: white;
@@ -107,6 +113,7 @@ footer {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Chatbox */
 #chatbox {
     max-width: 600px;
     margin: 20px auto;
@@ -145,9 +152,69 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
+
+/* Media query voor apparaten kleiner dan 768px (tablets, smartphones) */
 @media (max-width: 768px) {
-    /* Verander de layout voor apparaten met een breedte van maximaal 768px (bijv. tablets en smartphones) */
+    /* Verklein de tekstgrootte en pas de lay-out aan voor kleinere schermen */
     body {
         font-size: 14px;
+    }
+
+    /* Maak de navigatie kolomgewijs, flexbox aanpassing */
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 8px 0;
+        width: 80%;
+        padding: 12px 0;
+    }
+
+    /* Maak de vacature grid responsief */
+    .vacature-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Twee kolommen voor tablets */
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .vacature-card {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .solliciteer-knop {
+        width: 100%;
+        padding: 12px 25px;
+    }
+
+    footer {
+        font-size: 0.8em;
+    }
+}
+
+/* Media query voor kleinere schermen (mobiele telefoons) */
+@media (max-width: 480px) {
+    body {
+        font-size: 13px;
+    }
+
+    nav a {
+        width: 90%; /* Verhoog de breedte van links voor mobiel */
+    }
+
+    .vacature-grid {
+        display: grid;
+        grid-template-columns: 1fr; /* Eén kolom voor mobiel */
+    }
+
+    .vacature-card {
+        padding: 10px;
+    }
+
+    .solliciteer-knop {
+        padding: 12px 0;
     }
 }
